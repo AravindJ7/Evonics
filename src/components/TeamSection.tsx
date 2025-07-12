@@ -5,7 +5,7 @@ import { Users, Linkedin, Mail } from 'lucide-react';
 const TeamSection = () => {
   const founders = [
     {
-      name: "AiShek M",
+      name: "Abishek M",
       role: "Co-Founder & CEO",
       expertise: "AI & Biomedical Engineering",
       bio: "Leading innovation in neural interface technology with 8+ years in AI-driven healthcare solutions."

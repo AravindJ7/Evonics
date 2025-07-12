@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,33 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Premium Evonics color palette
+				evonics: {
+					gold: {
+						50: '#fffef7',
+						100: '#fffaeb',
+						200: '#fff4d6',
+						300: '#ffe9b3',
+						400: '#ffd966',
+						500: '#ffc533',
+						600: '#e6a300',
+						700: '#cc9200',
+						800: '#b37400',
+						900: '#805300'
+					},
+					black: {
+						50: '#1a1a1a',
+						100: '#0d0d0d',
+						200: '#000000',
+						300: '#0a0a0a',
+						400: '#141414',
+						500: '#1e1e1e',
+						600: '#282828',
+						700: '#323232',
+						800: '#3c3c3c',
+						900: '#464646'
+					}
 				}
 			},
 			borderRadius: {
@@ -84,11 +112,55 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(20px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'slide-up': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(30px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'pulse-gold': {
+					'0%, 100%': {
+						boxShadow: '0 0 0 0 rgba(255, 197, 51, 0.7)'
+					},
+					'50%': {
+						boxShadow: '0 0 0 10px rgba(255, 197, 51, 0)'
+					}
+				},
+				'float': {
+					'0%, 100%': {
+						transform: 'translateY(0px)'
+					},
+					'50%': {
+						transform: 'translateY(-10px)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.6s ease-out',
+				'slide-up': 'slide-up 0.8s ease-out',
+				'pulse-gold': 'pulse-gold 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+				'float': 'float 3s ease-in-out infinite'
+			},
+			fontFamily: {
+				'display': ['Inter', 'system-ui', 'sans-serif'],
+				'body': ['Inter', 'system-ui', 'sans-serif']
 			}
 		}
 	},

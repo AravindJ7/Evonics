@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -27,7 +28,7 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-evonics-black-200/95 backdrop-blur-md border-b border-evonics-gold-500/20' 
+          ? 'bg-background/95 backdrop-blur-md border-b border-border' 
           : 'bg-transparent'
       }`}
     >
@@ -36,8 +37,8 @@ const Header = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <div className="text-2xl lg:text-3xl font-bold">
-              <span className="text-gradient">Evonics</span>
-              <span className="text-white ml-2">India</span>
+              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Evonics</span>
+              <span className="text-foreground ml-2">India</span>
             </div>
           </div>
 
@@ -48,7 +49,7 @@ const Header = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-white hover:text-evonics-gold-400 px-3 py-2 text-sm font-medium transition-colors duration-200"
+                  className="text-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-colors duration-200"
                 >
                   {item.name}
                 </a>
@@ -56,8 +57,9 @@ const Header = () => {
             </div>
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* Theme Toggle & CTA Button */}
+          <div className="hidden md:flex items-center space-x-4">
+            <ThemeToggle />
             <a
               href="#demo"
               className="btn-premium text-sm lg:text-base animate-pulse-gold"
@@ -70,7 +72,7 @@ const Header = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-white hover:text-evonics-gold-400 p-2"
+              className="text-foreground hover:text-primary p-2 transition-colors duration-200"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -80,17 +82,20 @@ const Header = () => {
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-evonics-black-200/95 backdrop-blur-md rounded-lg mt-2">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-card/95 backdrop-blur-md rounded-lg mt-2 border border-border">
               {navigation.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-white hover:text-evonics-gold-400 block px-3 py-2 text-base font-medium transition-colors duration-200"
+                  className="text-foreground hover:text-primary block px-3 py-2 text-base font-medium transition-colors duration-200"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}
                 </a>
               ))}
+              <div className="flex items-center justify-center py-2">
+                <ThemeToggle />
+              </div>
               <a
                 href="#demo"
                 className="btn-premium text-center block mt-4 text-sm"

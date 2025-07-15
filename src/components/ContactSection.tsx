@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Calendar, CheckCircle } from 'lucide-react';
 
@@ -12,12 +11,34 @@ const ContactSection = () => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+
+    try {
+      await fetch('https://script.google.com/macros/s/AKfycbyUgsNXAc4Kw34dtBE1xSml1zX8QTIJ2YKlXVhVT7-wqIxzgvTl78sOPFdisGTcfb_B/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      console.log('Form submitted to Google Sheets:', formData);
+      setIsSubmitted(true);
+      setTimeout(() => setIsSubmitted(false), 3000);
+
+      setFormData({
+        name: '',
+        email: '',
+        organization: '',
+        message: '',
+        contactType: 'demo'
+      });
+
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -30,7 +51,6 @@ const ContactSection = () => {
   return (
     <section id="contact" className="relative section-padding bg-gradient-to-b from-evonics-black-300 to-evonics-black-200">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
         <div className="text-center mb-16 lg:mb-24">
           <div className="inline-flex items-center space-x-2 bg-evonics-gold-500/20 border border-evonics-gold-500/30 rounded-full px-6 py-2 text-sm font-medium text-evonics-gold-300 mb-6">
             <Mail className="w-4 h-4" />
@@ -46,11 +66,9 @@ const ContactSection = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Contact Form */}
           <div className="space-y-8">
             <div className="card-premium">
               <h3 className="text-2xl font-bold text-white mb-6">Schedule Your Demo</h3>
-              
               {isSubmitted ? (
                 <div className="text-center py-8 space-y-4">
                   <CheckCircle className="w-16 h-16 text-green-400 mx-auto" />
@@ -61,9 +79,7 @@ const ContactSection = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label htmlFor="name" className="text-sm font-medium text-gray-300">
-                        Full Name *
-                      </label>
+                      <label htmlFor="name" className="text-sm font-medium text-gray-300">Full Name *</label>
                       <input
                         type="text"
                         id="name"
@@ -75,11 +91,8 @@ const ContactSection = () => {
                         placeholder="Your full name"
                       />
                     </div>
-                    
                     <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-medium text-gray-300">
-                        Email Address *
-                      </label>
+                      <label htmlFor="email" className="text-sm font-medium text-gray-300">Email Address *</label>
                       <input
                         type="email"
                         id="email"
@@ -92,11 +105,8 @@ const ContactSection = () => {
                       />
                     </div>
                   </div>
-
                   <div className="space-y-2">
-                    <label htmlFor="organization" className="text-sm font-medium text-gray-300">
-                      Organization
-                    </label>
+                    <label htmlFor="organization" className="text-sm font-medium text-gray-300">Organization</label>
                     <input
                       type="text"
                       id="organization"
@@ -107,11 +117,8 @@ const ContactSection = () => {
                       placeholder="Hospital, clinic, or organization"
                     />
                   </div>
-
                   <div className="space-y-2">
-                    <label htmlFor="contactType" className="text-sm font-medium text-gray-300">
-                      I'm interested in *
-                    </label>
+                    <label htmlFor="contactType" className="text-sm font-medium text-gray-300">I'm interested in *</label>
                     <select
                       id="contactType"
                       name="contactType"
@@ -127,11 +134,8 @@ const ContactSection = () => {
                       <option value="other">Other</option>
                     </select>
                   </div>
-
                   <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-medium text-gray-300">
-                      Message
-                    </label>
+                    <label htmlFor="message" className="text-sm font-medium text-gray-300">Message</label>
                     <textarea
                       id="message"
                       name="message"
@@ -142,11 +146,7 @@ const ContactSection = () => {
                       placeholder="Tell us about your needs or questions..."
                     />
                   </div>
-
-                  <button
-                    type="submit"
-                    className="btn-premium w-full group"
-                  >
+                  <button type="submit" className="btn-premium w-full group">
                     <Send className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" />
                     Send Message
                   </button>
@@ -155,9 +155,8 @@ const ContactSection = () => {
             </div>
           </div>
 
-          {/* Contact Information */}
+          {/* Contact Information & Quick Links */}
           <div className="space-y-8">
-            {/* Primary CTA */}
             <div id="demo" className="card-premium text-center bg-gradient-to-br from-evonics-gold-500/20 to-evonics-gold-600/10 border-evonics-gold-500/40">
               <Calendar className="w-16 h-16 text-evonics-gold-400 mx-auto mb-6" />
               <h3 className="text-2xl font-bold text-white mb-4">Experience HAMARA Live</h3>
@@ -174,7 +173,6 @@ const ContactSection = () => {
               </a>
             </div>
 
-            {/* Contact Details */}
             <div className="card-premium">
               <h3 className="text-xl font-bold text-white mb-6">Contact Information</h3>
               <div className="space-y-4">
@@ -184,10 +182,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <p className="text-sm text-gray-400">Email</p>
-                    <a 
-                      href="mailto:evonicsindia@gmail.com"
-                      className="text-white hover:text-evonics-gold-400 transition-colors"
-                    >
+                    <a href="mailto:evonicsindia@gmail.com" className="text-white hover:text-evonics-gold-400 transition-colors">
                       evonicsindia@gmail.com
                     </a>
                   </div>
@@ -215,34 +210,24 @@ const ContactSection = () => {
               </div>
             </div>
 
-            {/* Quick Links */}
             <div className="card-premium">
               <h3 className="text-xl font-bold text-white mb-6">Quick Actions</h3>
               <div className="space-y-3">
-                <a 
-                  href="mailto:evonicsindia@gmail.com?subject=Partnership Inquiry"
-                  className="flex items-center space-x-3 p-3 rounded-lg bg-evonics-black-400/30 hover:bg-evonics-gold-500/10 transition-colors group"
-                >
+                <a href="mailto:evonicsindia@gmail.com?subject=Partnership Inquiry" className="flex items-center space-x-3 p-3 rounded-lg bg-evonics-black-400/30 hover:bg-evonics-gold-500/10 transition-colors group">
                   <div className="w-8 h-8 bg-evonics-gold-500/20 rounded-lg flex items-center justify-center">
                     <span className="text-sm">🤝</span>
                   </div>
                   <span className="text-white group-hover:text-evonics-gold-400 transition-colors">Partnership Opportunities</span>
                 </a>
-                
-                <a 
-                  href="mailto:evonicsindia@gmail.com?subject=Investment Information"
-                  className="flex items-center space-x-3 p-3 rounded-lg bg-evonics-black-400/30 hover:bg-evonics-gold-500/10 transition-colors group"
-                >
+
+                <a href="mailto:evonicsindia@gmail.com?subject=Investment Information" className="flex items-center space-x-3 p-3 rounded-lg bg-evonics-black-400/30 hover:bg-evonics-gold-500/10 transition-colors group">
                   <div className="w-8 h-8 bg-evonics-gold-500/20 rounded-lg flex items-center justify-center">
                     <span className="text-sm">💼</span>
                   </div>
                   <span className="text-white group-hover:text-evonics-gold-400 transition-colors">Investment Information</span>
                 </a>
-                
-                <a 
-                  href="mailto:evonicsindia@gmail.com?subject=Media Inquiry"
-                  className="flex items-center space-x-3 p-3 rounded-lg bg-evonics-black-400/30 hover:bg-evonics-gold-500/10 transition-colors group"
-                >
+
+                <a href="mailto:evonicsindia@gmail.com?subject=Media Inquiry" className="flex items-center space-x-3 p-3 rounded-lg bg-evonics-black-400/30 hover:bg-evonics-gold-500/10 transition-colors group">
                   <div className="w-8 h-8 bg-evonics-gold-500/20 rounded-lg flex items-center justify-center">
                     <span className="text-sm">📰</span>
                   </div>

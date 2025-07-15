@@ -8,16 +8,18 @@ const TeamSection = () => {
       name: "Abishek M",
       role: "Co-Founder & CEO",
       expertise: "AI & Biomedical Engineering",
-      bio: "Leading innovation in neural interface technology with 8+ years in AI-driven healthcare solutions."
+      bio: "Expert in robotic control systems and IoT integration, pioneering next-generation prosthetic technology."
+    
     },
     {
       name: "Rohit",
       role: "Co-Founder & CTO",
       expertise: "Robotics & IoT Systems",
-      bio: "Expert in robotic control systems and IoT integration, pioneering next-generation prosthetic technology."
+     bio: "Leading innovation in neural interface technology with 8+ years in AI-driven healthcare solutions."
+     
     },
     {
-      name: "Aruneshwar",
+      name: "Aruneswar",
       role: "Co-Founder & CPO",
       expertise: "Product Design & UX",
       bio: "Human-centered design specialist focused on creating intuitive, accessible medical devices."
@@ -29,7 +31,7 @@ const TeamSection = () => {
       bio: "Healthcare market strategist with deep understanding of Indian medical device landscape."
     },
     {
-      name: "Manojkummar",
+      name: "Manojkumar sv",
       role: "Co-Founder & COO",
       expertise: "Operations & Manufacturing",
       bio: "Operations excellence leader specializing in scalable manufacturing and quality systems."

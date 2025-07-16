@@ -41,7 +41,7 @@ const Header = () => {
     <img
       src="/logo.png"
       alt="Evonics Logo"
-      className="h-20 w-auto"
+      className="h-24 w-auto"
     />
     <span className="text-xl lg:text-2xl font-bold text-foreground hidden sm:inline">
       Evonics India

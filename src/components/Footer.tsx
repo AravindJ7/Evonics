@@ -61,7 +61,7 @@ const Footer = () => {
                 className="flex items-center space-x-3 text-gray-300 hover:text-evonics-gold-400 transition-colors duration-200 group"
               >
                 <Mail className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                <span className="text-sm">evonicsindia@gmail.com</span>
+                <span className="text-sm">Evonicsindia@gmail.com</span>
               </a>
               
               <div className="flex items-center space-x-3 text-gray-300">
@@ -74,14 +74,20 @@ const Footer = () => {
 
             {/* Social Links */}
             <div className="flex space-x-3 pt-2">
-              <button className="w-10 h-10 bg-evonics-gold-500/20 hover:bg-evonics-gold-500/30 rounded-lg flex items-center justify-center text-evonics-gold-400 hover:text-evonics-gold-300 transition-all duration-200 hover:scale-110">
-                <Linkedin className="w-4 h-4" />
-              </button>
+             <a
+  href="https://www.linkedin.com/company/evonics/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="w-10 h-10 bg-evonics-gold-500/20 hover:bg-evonics-gold-500/30 rounded-lg flex items-center justify-center text-evonics-gold-400 hover:text-evonics-gold-300 transition-all duration-200 hover:scale-110"
+>
+  <Linkedin className="w-4 h-4" />
+</a>
+
                <button className="w-10 h-10 bg-evonics-gold-500/20 hover:bg-evonics-gold-500/30 rounded-full flex items-center justify-center text-evonics-gold-400 hover:text-evonics-gold-300 transition-colors">
                    <Instagram className="w-4 h-4" />
                 </button>
               <a
-                href="mailto:evonicsindia@gmail.com"
+                href="mailto:Evonicsindia@gmail.com"
                 className="w-10 h-10 bg-evonics-gold-500/20 hover:bg-evonics-gold-500/30 rounded-lg flex items-center justify-center text-evonics-gold-400 hover:text-evonics-gold-300 transition-all duration-200 hover:scale-110"
               >
                 <Mail className="w-4 h-4" />

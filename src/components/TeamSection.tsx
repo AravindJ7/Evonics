@@ -41,7 +41,7 @@ const TeamSection: React.FC = () => {
       role: "Co-Founder & CMO",
       expertise: "Healthcare Strategy",
       bio: "Healthcare market strategist with deep understanding of Indian medical device landscape.",
-      linkedin: "https://www.linkedin.com/in/archana-karan-",
+      linkedin: "https://www.linkedin.com/in/archana-karan-b52745283",
       email: "mailto:archanak3009@gmail.com"
     },
     {

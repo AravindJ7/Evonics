@@ -35,12 +35,20 @@ const Header = () => {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <div className="text-2xl lg:text-3xl font-bold">
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Evonics</span>
-              <span className="text-foreground ml-2">India</span>
-            </div>
-          </div>
+          {/* Logo with image */}
+<div className="flex-shrink-0 flex items-center">
+  <a href="#hero" className="flex items-center space-x-2">
+    <img
+      src="/logo.png"
+      alt="Evonics Logo"
+      className="h-20 w-auto"
+    />
+    <span className="text-xl lg:text-2xl font-bold text-foreground hidden sm:inline">
+      Evonics India
+    </span>
+  </a>
+</div>
+
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">

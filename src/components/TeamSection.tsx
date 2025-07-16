@@ -1,40 +1,56 @@
-
 import React from 'react';
-import { Users, Linkedin, Mail} from 'lucide-react';
+import { Users, Linkedin, Mail } from 'lucide-react';
 
-const TeamSection = () => {
-  const founders = [
+interface TeamMember {
+  name: string;
+  role: string;
+  expertise: string;
+  bio: string;
+  linkedin: string;
+  email: string;
+}
+
+const TeamSection: React.FC = () => {
+  const founders: TeamMember[] = [
     {
       name: "Abishek M",
       role: "Co-Founder & CEO",
       expertise: "AI & Biomedical Engineering",
-      bio: "Expert in robotic control systems and IoT integration, pioneering next-generation prosthetic technology."
-    
+      bio: "Expert in robotic control systems and IoT integration, pioneering next-generation prosthetic technology.",
+      linkedin: "https://www.linkedin.com/in/abishek-madhusudhanan/",
+      email: "mailto:abishek0117@gmail.com"
     },
     {
       name: "Rohit",
       role: "Co-Founder & CTO",
       expertise: "Robotics & IoT Systems",
-     bio: "Leading innovation in neural interface technology with 8+ years in AI-driven healthcare solutions."
-     
+      bio: "Leading innovation in neural interface technology with 8+ years in AI-driven healthcare solutions.",
+      linkedin: "https://www.linkedin.com/in/rohith-rramesh",
+      email: "mailto:rohithachu089@gmail.com"
     },
     {
       name: "Aruneswar",
       role: "Co-Founder & CPO",
       expertise: "Product Design & UX",
-      bio: "Human-centered design specialist focused on creating intuitive, accessible medical devices."
+      bio: "Human-centered design specialist focused on creating intuitive, accessible medical devices.",
+      linkedin: "https://www.linkedin.com/in/aruneswar-s",
+      email: "mailto:saruneswar@gmail.com"
     },
     {
       name: "Archana",
       role: "Co-Founder & CMO",
       expertise: "Healthcare Strategy",
-      bio: "Healthcare market strategist with deep understanding of Indian medical device landscape."
+      bio: "Healthcare market strategist with deep understanding of Indian medical device landscape.",
+      linkedin: "https://www.linkedin.com/in/archana-karan-",
+      email: "mailto:archanak3009@gmail.com"
     },
     {
       name: "Manojkumar sv",
       role: "Co-Founder & COO",
       expertise: "Operations & Manufacturing",
-      bio: "Operations excellence leader specializing in scalable manufacturing and quality systems."
+      bio: "Operations excellence leader specializing in scalable manufacturing and quality systems.",
+      linkedin: "https://www.linkedin.com/in/manojkumar-sv",
+      email: "mailto:svmanojkumar02@gmail.com"
     }
   ];
 
@@ -82,13 +98,22 @@ const TeamSection = () => {
 
                 {/* Social Links */}
                 <div className="flex justify-center space-x-4 pt-4 border-t border-evonics-gold-500/20">
-                  <button className="w-10 h-10 bg-evonics-gold-500/20 hover:bg-evonics-gold-500/30 rounded-full flex items-center justify-center text-evonics-gold-400 hover:text-evonics-gold-300 transition-colors">
+                  <a 
+                    href={founder.linkedin} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-evonics-gold-500/20 hover:bg-evonics-gold-500/30 rounded-full flex items-center justify-center text-evonics-gold-400 hover:text-evonics-gold-300 transition-colors"
+                    aria-label={`${founder.name}'s LinkedIn profile`}
+                  >
                     <Linkedin className="w-4 h-4" />
-                  </button>
-                  <button className="w-10 h-10 bg-evonics-gold-500/20 hover:bg-evonics-gold-500/30 rounded-full flex items-center justify-center text-evonics-gold-400 hover:text-evonics-gold-300 transition-colors">
+                  </a>
+                  <a 
+                    href={founder.email} 
+                    className="w-10 h-10 bg-evonics-gold-500/20 hover:bg-evonics-gold-500/30 rounded-full flex items-center justify-center text-evonics-gold-400 hover:text-evonics-gold-300 transition-colors"
+                    aria-label={`Email ${founder.name}`}
+                  >
                     <Mail className="w-4 h-4" />
-                  </button>
-                  
+                  </a>
                 </div>
               </div>
             </div>

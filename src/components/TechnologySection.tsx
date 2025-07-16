@@ -13,6 +13,7 @@ const TechnologySection = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const formRef = useRef<HTMLFormElement>(null);
 
   const features = [
@@ -84,15 +85,36 @@ const TechnologySection = () => {
       ...prev,
       [name]: value
     }));
+    // Clear any previous errors when user types
+    if (submitError) setSubmitError('');
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError('');
     
-    // Simulate API call
-    setTimeout(() => {
-      console.log('Submitted:', { ...formData, rating });
+    try {
+      // Prepare the data to send to Google Sheets
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        rating: rating,
+        feedback: formData.feedback,
+        timestamp: new Date().toISOString()
+      };
+
+      // Send data to Google Sheets web app
+      const response = await fetch('https://script.google.com/macros/s/AKfycbzURbd73zcGE-V0zARDOthpcrNPXPwH8_29uGANKxWPjsZkS12DY7xkDzSxbbZh29z2/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+      });
+
+      // Show success message
       setIsSubmitting(false);
       setShowSuccess(true);
       
@@ -102,7 +124,12 @@ const TechnologySection = () => {
         setRating(0);
         setShowSuccess(false);
       }, 3000);
-    }, 1500);
+      
+    } catch (error) {
+      console.error('Error submitting feedback:', error);
+      setIsSubmitting(false);
+      setSubmitError('Failed to submit feedback. Please try again later.');
+    }
   };
 
   const confettiConfig = {
@@ -249,6 +276,13 @@ const TechnologySection = () => {
             )}
 
             <h3 className="text-2xl font-bold text-white mb-8 text-center">Share Your Experience</h3>
+            
+            {/* Error message */}
+            {submitError && (
+              <div className="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-200 text-center">
+                {submitError}
+              </div>
+            )}
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Feedback Form */}

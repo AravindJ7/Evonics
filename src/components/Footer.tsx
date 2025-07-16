@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Heart, Mail, Linkedin, Twitter, ArrowUp } from 'lucide-react';
+import { Heart, Mail, Linkedin, Twitter,Instagram, ArrowUp } from 'lucide-react';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -77,9 +77,9 @@ const Footer = () => {
               <button className="w-10 h-10 bg-evonics-gold-500/20 hover:bg-evonics-gold-500/30 rounded-lg flex items-center justify-center text-evonics-gold-400 hover:text-evonics-gold-300 transition-all duration-200 hover:scale-110">
                 <Linkedin className="w-4 h-4" />
               </button>
-              <button className="w-10 h-10 bg-evonics-gold-500/20 hover:bg-evonics-gold-500/30 rounded-lg flex items-center justify-center text-evonics-gold-400 hover:text-evonics-gold-300 transition-all duration-200 hover:scale-110">
-                <Twitter className="w-4 h-4" />
-              </button>
+               <button className="w-10 h-10 bg-evonics-gold-500/20 hover:bg-evonics-gold-500/30 rounded-full flex items-center justify-center text-evonics-gold-400 hover:text-evonics-gold-300 transition-colors">
+                   <Instagram className="w-4 h-4" />
+                </button>
               <a
                 href="mailto:evonicsindia@gmail.com"
                 className="w-10 h-10 bg-evonics-gold-500/20 hover:bg-evonics-gold-500/30 rounded-lg flex items-center justify-center text-evonics-gold-400 hover:text-evonics-gold-300 transition-all duration-200 hover:scale-110"

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Users, Linkedin, Mail } from 'lucide-react';
+import { Users, Linkedin, Mail} from 'lucide-react';
 
 const TeamSection = () => {
   const founders = [
@@ -88,6 +88,7 @@ const TeamSection = () => {
                   <button className="w-10 h-10 bg-evonics-gold-500/20 hover:bg-evonics-gold-500/30 rounded-full flex items-center justify-center text-evonics-gold-400 hover:text-evonics-gold-300 transition-colors">
                     <Mail className="w-4 h-4" />
                   </button>
+                  
                 </div>
               </div>
             </div>

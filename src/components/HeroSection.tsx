@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { ArrowRight, Play, Zap, Wifi, Activity } from 'lucide-react';
 
@@ -87,33 +86,34 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right Content - Product Showcase */}
+          {/* Right Content - Team Image Showcase */}
           <div className={`relative ${isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-8'}`}>
-            <div className="relative">
-              {/* Main Product Image Placeholder */}
-              <div className="relative bg-gradient-to-br from-evonics-black-400/50 to-evonics-black-500/30 backdrop-blur-sm border border-evonics-gold-500/30 rounded-3xl p-8 lg:p-12">
-                <div className="aspect-square bg-gradient-to-br from-evonics-gold-500/20 to-evonics-gold-600/10 rounded-2xl flex items-center justify-center relative overflow-hidden">
-                  {/* Prosthetic Arm Visualization */}
-                  <div className="w-full h-full bg-gradient-to-t from-evonics-gold-500/30 to-transparent rounded-2xl flex items-center justify-center">
-                    <div className="text-6xl lg:text-8xl font-bold text-gradient opacity-50">
-                      HAMARA
-                    </div>
-                  </div>
+            <div className="relative h-full">
+              <div className="relative h-full bg-gradient-to-br from-evonics-black-400/50 to-evonics-black-500/30 backdrop-blur-sm border border-evonics-gold-500/30 rounded-3xl overflow-hidden">
+                {/* Team Image - Now fully visible */}
+                <img 
+                  src="/team.jpg" 
+                  alt="HAMARA Team" 
+                  className="w-full h-full object-cover"
+                />
+                
+                {/* Semi-transparent overlay with HAMARA text */}
+                <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                  <div className="text-5xl lg:text-7xl font-bold text-gradient opacity-80">
                   
-                  {/* Floating Tech Icons */}
-                  <div className="absolute top-4 right-4 bg-evonics-gold-500/20 backdrop-blur-sm rounded-full p-3 animate-float">
-                    <Wifi className="w-6 h-6 text-evonics-gold-400" />
-                  </div>
-                  <div className="absolute bottom-4 left-4 bg-evonics-gold-500/20 backdrop-blur-sm rounded-full p-3 animate-float" style={{ animationDelay: '1s' }}>
-                    <Activity className="w-6 h-6 text-evonics-gold-400" />
-                  </div>
-                  <div className="absolute top-1/2 left-4 bg-evonics-gold-500/20 backdrop-blur-sm rounded-full p-3 animate-float" style={{ animationDelay: '2s' }}>
-                    <Zap className="w-6 h-6 text-evonics-gold-400" />
                   </div>
                 </div>
                 
-                {/* Glowing Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-evonics-gold-500/10 to-evonics-gold-600/5 rounded-3xl animate-pulse-gold" />
+                {/* Floating Tech Icons */}
+                <div className="absolute top-4 right-4 bg-evonics-gold-500/20 backdrop-blur-sm rounded-full p-3 animate-float">
+                  <Wifi className="w-6 h-6 text-evonics-gold-400" />
+                </div>
+                <div className="absolute bottom-4 left-4 bg-evonics-gold-500/20 backdrop-blur-sm rounded-full p-3 animate-float" style={{ animationDelay: '1s' }}>
+                  <Activity className="w-6 h-6 text-evonics-gold-400" />
+                </div>
+                <div className="absolute top-1/2 left-4 bg-evonics-gold-500/20 backdrop-blur-sm rounded-full p-3 animate-float" style={{ animationDelay: '2s' }}>
+                  <Zap className="w-6 h-6 text-evonics-gold-400" />
+                </div>
               </div>
             </div>
           </div>

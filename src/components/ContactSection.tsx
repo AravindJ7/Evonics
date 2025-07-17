@@ -106,15 +106,15 @@ const ContactSection = () => {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="organization" className="text-sm font-medium text-gray-300">Organization</label>
+                    <label htmlFor="organization" className="text-sm font-medium text-gray-300">Phone Number</label>
                     <input
-                      type="text"
+                      type="phone"
                       id="organization"
                       name="organization"
                       value={formData.organization}
                       onChange={handleChange}
                       className="w-full px-4 py-3 bg-evonics-black-400/50 border border-evonics-gold-500/30 rounded-lg text-white placeholder-gray-400 focus:border-evonics-gold-500 focus:outline-none transition-colors"
-                      placeholder="Hospital, clinic, or organization"
+                     
                     />
                   </div>
                   <div className="space-y-2">

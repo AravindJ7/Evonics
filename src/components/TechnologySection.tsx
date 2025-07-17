@@ -105,7 +105,7 @@ const TechnologySection = () => {
       };
 
       // Send data to Google Sheets web app
-      const response = await fetch('https://script.google.com/macros/s/AKfycbzURbd73zcGE-V0zARDOthpcrNPXPwH8_29uGANKxWPjsZkS12DY7xkDzSxbbZh29z2/exec', {
+      const response = await fetch(' https://script.google.com/macros/s/AKfycbzd5xpcS88Pjc5D_GBDFZ1GXWxhAO4KeoRzr86wrGjMPDxZIhyIi8ZehSiHYI87btKd/exec ', {
         method: 'POST',
         mode: 'no-cors',
         headers: {

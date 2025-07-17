@@ -83,9 +83,15 @@ const Footer = () => {
   <Linkedin className="w-4 h-4" />
 </a>
 
-               <button className="w-10 h-10 bg-evonics-gold-500/20 hover:bg-evonics-gold-500/30 rounded-full flex items-center justify-center text-evonics-gold-400 hover:text-evonics-gold-300 transition-colors">
-                   <Instagram className="w-4 h-4" />
-                </button>
+               <a
+  href="https://www.instagram.com/evonics_india?igsh=MWNud3B6cm9yOTFmbA%3D%3D&utm_source=qr" // replace with your actual Instagram handle if different
+  target="_blank"
+  rel="noopener noreferrer"
+  className="w-10 h-10 bg-evonics-gold-500/20 hover:bg-evonics-gold-500/30 rounded-full flex items-center justify-center text-evonics-gold-400 hover:text-evonics-gold-300 transition-all duration-200 hover:scale-110"
+>
+  <Instagram className="w-4 h-4" />
+</a>
+
               <a
                 href="mailto:Evonicsindia@gmail.com"
                 className="w-10 h-10 bg-evonics-gold-500/20 hover:bg-evonics-gold-500/30 rounded-lg flex items-center justify-center text-evonics-gold-400 hover:text-evonics-gold-300 transition-all duration-200 hover:scale-110"

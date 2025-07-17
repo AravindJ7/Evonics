@@ -183,7 +183,7 @@ const ContactSection = () => {
                   <div>
                     <p className="text-sm text-gray-400">Email</p>
                     <a href="mailto:evonicsindia@gmail.com" className="text-white hover:text-evonics-gold-400 transition-colors">
-                      evonicsindia@gmail.com
+                      Evonicsindia@gmail.com
                     </a>
                   </div>
                 </div>

@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Heart, ArrowRight, Users, Award, Target } from 'lucide-react';
 
@@ -30,28 +29,36 @@ const StorySection = () => {
       title: "The Challenge",
       description: "Over 1 million Indians live with upper limb amputations, facing daily challenges that limit their independence and quality of life.",
       stat: "1M+",
-      statLabel: "Affected Lives"
+      statLabel: "Affected Lives",
+      image: "/challenge.jpg",
+      alt: "Person facing mobility challenges"
     },
     {
       icon: <Heart className="w-8 h-8" />,
       title: "Our Vision",
       description: "We envisioned affordable, AI-powered prosthetics that don't just replace limbs—they enhance human capability through advanced technology.",
       stat: "50%",
-      statLabel: "Cost Reduction"
+      statLabel: "Cost Reduction",
+      image: "/vision.jpg",
+      alt: "Team brainstorming prosthetic design"
     },
     {
       icon: <Award className="w-8 h-8" />,
       title: "Innovation",
       description: "HAMARA integrates EMG control, 5G connectivity, and IoT health monitoring into a 3D-printed, modular design that adapts to each user.",
       stat: "24/7",
-      statLabel: "Health Tracking"
+      statLabel: "Health Tracking",
+      image: "/innovation.jpg",
+      alt: "Advanced prosthetic technology demonstration"
     },
     {
       icon: <Users className="w-8 h-8" />,
       title: "Empowerment",
       description: "Today, our users experience newfound independence, performing daily tasks with precision and confidence while staying connected to their health.",
       stat: "95%",
-      statLabel: "User Satisfaction"
+      statLabel: "User Satisfaction",
+      image: "/empowerment.jpg",
+      alt: "Person using prosthetic arm with confidence"
     }
   ];
 
@@ -113,13 +120,18 @@ const StorySection = () => {
                     </p>
                   </div>
 
-                  {/* Visual */}
+                  {/* Visual - Clean Image Display */}
                   <div className={`${index % 2 === 1 ? 'lg:order-1' : ''}`}>
-                    <div className="card-premium">
-                      <div className="aspect-video bg-gradient-to-br from-evonics-gold-500/20 to-evonics-gold-600/10 rounded-xl flex items-center justify-center">
-                        <div className="text-4xl lg:text-6xl font-bold text-gradient opacity-30">
-                          {String(index + 1).padStart(2, '0')}
-                        </div>
+                    <div className="card-premium overflow-hidden">
+                      <div className="aspect-video relative rounded-xl overflow-hidden">
+                        <img 
+                          src={step.image} 
+                          alt={step.alt}
+                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                          loading="lazy"
+                        />
+                        {/* Subtle overlay for better text contrast (optional) */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-evonics-black-400/20 to-transparent" />
                       </div>
                     </div>
                   </div>

@@ -52,11 +52,13 @@ const TechnologySection = () => {
   ];
 
   const technicalSpecs = [
-    { label: "Battery Life", value: "18+ hours", icon: <Zap className="w-5 h-5" /> },
-    { label: "Weight", value: "1.2 kg", icon: <Shield className="w-5 h-5" /> },
-    { label: "Response Time", value: "<50ms", icon: <Smartphone className="w-5 h-5" /> },
-    { label: "Durability", value: "IP67 Rated", icon: <Heart className="w-5 h-5" /> }
-  ];
+  { label: "Built-in", value: "Rechargeable battery", image: "/battery.png" },
+  { label: "Weight", value: "392g(less weight)", image: "/strength.png" },
+  { label: "1.0s", value: "Finger opening/closing Time", image: "/time.png" },
+  { label: "AI", value: "intergrated", image: "/ai-robot.png" },
+];
+
+
 
   const reviews = [
     {
@@ -235,23 +237,28 @@ const TechnologySection = () => {
           </div>
         </div>
 
-        {/* Technical Specifications */}
-        <div className="card-premium">
-          <h3 className="text-2xl font-bold text-white mb-8 text-center">Technical Specifications</h3>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {technicalSpecs.map((spec, index) => (
-              <div key={index} className="text-center space-y-3">
-                <div className="w-16 h-16 bg-evonics-gold-500/20 rounded-2xl flex items-center justify-center text-evonics-gold-400 mx-auto">
-                  {spec.icon}
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-gradient">{spec.value}</div>
-                  <div className="text-sm text-gray-400">{spec.label}</div>
-                </div>
-              </div>
-            ))}
-          </div>
+          {/* Technical Specifications */}
+<div className="card-premium py-8 px-4 bg-gray-900 rounded-2xl">
+  <h3 className="text-2xl font-bold text-white mb-8 text-center">
+    Technical Specifications
+  </h3>
+  <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+    {technicalSpecs.map((spec, index) => (
+      <div key={index} className="flex flex-col items-center justify-center space-y-3">
+        <img
+          src={spec.image}
+          alt={spec.label}
+          className="w-12 h-12 object-contain"
+        />
+        <div className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-pink-500 bg-clip-text text-transparent">
+          {spec.label}
         </div>
+        <div className="text-sm text-gray-400">{spec.value}</div>
+      </div>
+    ))}
+  </div>
+</div>
+
 
         {/* Feedback Section */}
         <div className="mt-16 lg:mt-24">

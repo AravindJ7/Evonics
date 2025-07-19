@@ -32,7 +32,7 @@ const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await fetch('https://script.google.com/macros/s/AKfycbznn4_V3xquqHOYZS-DEbsw6qXVAp4Y-jTJWJb1HrxG7olOlN0IDEiKUgModlBZb9JMbw/exec', {
+      await fetch('https://script.google.com/macros/s/AKfycbwIumcprgz5yfa6VNXc7wqUGPPcLX86CFuGzkOiWsUYWSRHrbS9TyZ5t1c3Hqc8NS6yNA/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
@@ -65,7 +65,7 @@ const ContactSection = () => {
   const handleJobSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await fetch('https://script.google.com/macros/s/AKfycbwq2xn_4kCxqPqPa9Ke8xs8Asyk-mgftkEapNu0l3VEi4fh9Kbpd_tars_lFOd76eUxug/exec', {
+      await fetch('https://script.google.com/macros/s/AKfycbxqBPnzSlan4mxRVg9_J6Ohx9vdLWBRCS4PgxPHpl9jqkWKKRZr7q-8jpKtawFvXz29cQ/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
@@ -421,7 +421,7 @@ const ContactSection = () => {
             </div>
 
             {/* Experience Demo Section */}
-            <div className="bg-gradient-to-br from-evonics-gold-500/20 to-evonics-gold-600/10 border border-evonics-gold-500/30 rounded-3xl p-8 lg:p-10 text-center">
+            {/* <div className="bg-gradient-to-br from-evonics-gold-500/20 to-evonics-gold-600/10 border border-evonics-gold-500/30 rounded-3xl p-8 lg:p-10 text-center">
               <Calendar className="w-16 h-16 text-evonics-gold-400 mx-auto mb-6" />
               <h3 className="text-2xl font-bold text-white mb-4">Experience HAMARA Live</h3>
               <p className="text-gray-300 mb-6">
@@ -435,7 +435,7 @@ const ContactSection = () => {
                 <Calendar className="w-5 h-5" />
                 <span>Schedule Demo Now</span>
               </a>
-            </div>
+            </div> */}
 
             {/* Contact Information */}
             <div className="bg-gradient-to-br from-evonics-black-400/50 to-evonics-black-500/30 backdrop-blur-sm border border-evonics-gold-500/30 rounded-3xl p-8 lg:p-10">

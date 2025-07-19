@@ -57,7 +57,7 @@ const HeroSection = () => {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <a
-                href="#demo"
+                href="#contact"
                 className="btn-premium group inline-flex items-center justify-center space-x-2"
               >
                 <span>Schedule a Demo</span>

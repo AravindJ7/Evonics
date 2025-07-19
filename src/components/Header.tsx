@@ -69,7 +69,7 @@ const Header = () => {
           <div className="hidden md:flex items-center space-x-4">
             <ThemeToggle />
             <a
-              href="#demo"
+              href="#contact"
               className="btn-premium text-sm lg:text-base animate-pulse-gold"
             >
               Schedule a Demo

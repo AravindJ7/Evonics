@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Calendar, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Calendar, CheckCircle, ChevronDown, ChevronUp } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const ContactSection = () => {
+  // Contact form state
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -10,22 +12,39 @@ const ContactSection = () => {
     message: '',
     contactType: 'demo'
   });
+  
+  // Job application form state
+  const [jobFormData, setJobFormData] = useState({
+    name: '',
+    email: '',
+    age: '',
+    gender: '',
+    experience: '',
+    job: '',
+    qualification: '',
+    position: ''
+  });
+  
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isJobSubmitted, setIsJobSubmitted] = useState(false);
+  const [showJobForm, setShowJobForm] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     try {
-      await fetch('https://script.google.com/macros/s/AKfycbydN-QbBjCq7cJ61UTxvZ421XWQXTdzToPdfZSa-bwhk8yAcObF3qxYxMGHOq0hsWGa/exec', {
+      await fetch('https://script.google.com/macros/s/AKfycbznn4_V3xquqHOYZS-DEbsw6qXVAp4Y-jTJWJb1HrxG7olOlN0IDEiKUgModlBZb9JMbw/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          formType: 'contactForm'
+        }),
       });
 
-      console.log('Form submitted to Google Sheets:', formData);
+      console.log('Contact form submitted:', formData);
       setIsSubmitted(true);
       setTimeout(() => setIsSubmitted(false), 3000);
 
@@ -39,13 +58,58 @@ const ContactSection = () => {
       });
 
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('Error submitting contact form:', error);
+    }
+  };
+
+  const handleJobSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await fetch('https://script.google.com/macros/s/AKfycbwq2xn_4kCxqPqPa9Ke8xs8Asyk-mgftkEapNu0l3VEi4fh9Kbpd_tars_lFOd76eUxug/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...jobFormData,
+          formType: 'jobApplication'
+        }),
+      });
+
+      console.log('Job application submitted:', jobFormData);
+      setIsJobSubmitted(true);
+      setTimeout(() => {
+        setIsJobSubmitted(false);
+        setShowJobForm(false);
+      }, 3000);
+
+      setJobFormData({
+        name: '',
+        email: '',
+        age: '',
+        gender: '',
+        experience: '',
+        job: '',
+        qualification: '',
+        position: ''
+      });
+
+    } catch (error) {
+      console.error('Error submitting job application:', error);
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleJobFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setJobFormData({
+      ...jobFormData,
       [e.target.name]: e.target.value
     });
   };
@@ -68,15 +132,21 @@ const ContactSection = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+          {/* Contact Form Column */}
           <div className="space-y-8">
             <div className="bg-gradient-to-br from-evonics-black-400/50 to-evonics-black-500/30 backdrop-blur-sm border border-evonics-gold-500/30 rounded-3xl p-8 lg:p-10">
               <h3 className="text-2xl font-bold text-white mb-6">Schedule Your Demo</h3>
               {isSubmitted ? (
-                <div className="text-center py-8 space-y-4">
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="text-center py-8 space-y-4"
+                >
                   <CheckCircle className="w-16 h-16 text-green-400 mx-auto" />
                   <h4 className="text-xl font-bold text-white">Message Sent!</h4>
                   <p className="text-gray-300">We'll get back to you within 24 hours.</p>
-                </div>
+                </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
@@ -172,8 +242,185 @@ const ContactSection = () => {
             </div>
           </div>
 
-          {/* Contact Information & Quick Links */}
+          {/* Right Column - Job Application and Contact Info */}
           <div className="space-y-8">
+            {/* Job Application Section */}
+            <div className="bg-gradient-to-br from-evonics-gold-500/20 to-evonics-gold-600/10 border border-evonics-gold-500/30 rounded-3xl p-8 lg:p-10">
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-2xl font-bold text-white">Join Our Team</h3>
+                {!showJobForm && !isJobSubmitted && (
+                  <button 
+                    onClick={() => setShowJobForm(true)}
+                    className="btn-premium group"
+                  >
+                    <span>Apply Now</span>
+                    <ChevronDown className="w-5 h-5 ml-2 group-hover:translate-y-1 transition-transform" />
+                  </button>
+                )}
+              </div>
+
+              <AnimatePresence>
+                {isJobSubmitted ? (
+                  <motion.div 
+                    key="success-message"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    className="text-center py-8 space-y-4"
+                  >
+                    <CheckCircle className="w-16 h-16 text-green-400 mx-auto" />
+                    <h4 className="text-xl font-bold text-white">Application Submitted!</h4>
+                    <p className="text-gray-300">We'll review your application and get back to you soon.</p>
+                  </motion.div>
+                ) : showJobForm ? (
+                  <motion.form 
+                    key="job-form"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    onSubmit={handleJobSubmit} 
+                    className="space-y-6 overflow-hidden"
+                  >
+                    <div className="flex justify-between items-center">
+                      <h4 className="text-xl font-semibold text-evonics-gold-400">Application Form</h4>
+                      <button 
+                        type="button" 
+                        onClick={() => setShowJobForm(false)}
+                        className="text-gray-400 hover:text-white transition-colors"
+                      >
+                        <ChevronUp className="w-5 h-5" />
+                      </button>
+                    </div>
+                    
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label htmlFor="job-name" className="text-sm font-medium text-gray-300">Full Name *</label>
+                        <input
+                          type="text"
+                          id="job-name"
+                          name="name"
+                          required
+                          value={jobFormData.name}
+                          onChange={handleJobFormChange}
+                          className="w-full px-4 py-3 bg-evonics-black-400/50 border border-evonics-gold-500/30 rounded-lg text-white placeholder-gray-400 focus:border-evonics-gold-500 focus:outline-none transition-colors"
+                          placeholder="Your full name"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label htmlFor="job-email" className="text-sm font-medium text-gray-300">Email Address *</label>
+                        <input
+                          type="email"
+                          id="job-email"
+                          name="email"
+                          required
+                          value={jobFormData.email}
+                          onChange={handleJobFormChange}
+                          className="w-full px-4 py-3 bg-evonics-black-400/50 border border-evonics-gold-500/30 rounded-lg text-white placeholder-gray-400 focus:border-evonics-gold-500 focus:outline-none transition-colors"
+                          placeholder="your@email.com"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label htmlFor="age" className="text-sm font-medium text-gray-300">Age *</label>
+                        <input
+                          type="number"
+                          id="age"
+                          name="age"
+                          required
+                          value={jobFormData.age}
+                          onChange={handleJobFormChange}
+                          className="w-full px-4 py-3 bg-evonics-black-400/50 border border-evonics-gold-500/30 rounded-lg text-white placeholder-gray-400 focus:border-evonics-gold-500 focus:outline-none transition-colors"
+                          placeholder="Your age"
+                          min="18"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label htmlFor="gender" className="text-sm font-medium text-gray-300">Gender *</label>
+                        <select
+                          id="gender"
+                          name="gender"
+                          required
+                          value={jobFormData.gender}
+                          onChange={handleJobFormChange}
+                          className="w-full px-4 py-3 bg-evonics-black-400/50 border border-evonics-gold-500/30 rounded-lg text-white focus:border-evonics-gold-500 focus:outline-none transition-colors"
+                        >
+                          <option value="">Select Gender</option>
+                          <option value="male">Male</option>
+                          <option value="female">Female</option>
+                          <option value="other">Other</option>
+                          <option value="prefer-not-to-say">Prefer not to say</option>
+                        </select>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <label htmlFor="qualification" className="text-sm font-medium text-gray-300">Qualification *</label>
+                      <input
+                        type="text"
+                        id="qualification"
+                        name="qualification"
+                        required
+                        value={jobFormData.qualification}
+                        onChange={handleJobFormChange}
+                        className="w-full px-4 py-3 bg-evonics-black-400/50 border border-evonics-gold-500/30 rounded-lg text-white placeholder-gray-400 focus:border-evonics-gold-500 focus:outline-none transition-colors"
+                        placeholder="Your educational qualification"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <label htmlFor="experience" className="text-sm font-medium text-gray-300">Experience (Years) *</label>
+                      <input
+                        type="number"
+                        id="experience"
+                        name="experience"
+                        required
+                        value={jobFormData.experience}
+                        onChange={handleJobFormChange}
+                        className="w-full px-4 py-3 bg-evonics-black-400/50 border border-evonics-gold-500/30 rounded-lg text-white placeholder-gray-400 focus:border-evonics-gold-500 focus:outline-none transition-colors"
+                        placeholder="Years of relevant experience"
+                        min="0"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <label htmlFor="job" className="text-sm font-medium text-gray-300">Current/Most Recent Job</label>
+                      <input
+                        type="text"
+                        id="job"
+                        name="job"
+                        value={jobFormData.job}
+                        onChange={handleJobFormChange}
+                        className="w-full px-4 py-3 bg-evonics-black-400/50 border border-evonics-gold-500/30 rounded-lg text-white placeholder-gray-400 focus:border-evonics-gold-500 focus:outline-none transition-colors"
+                        placeholder="Your current or most recent position"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <label htmlFor="position" className="text-sm font-medium text-gray-300">Position Applying For *</label>
+                      <input
+                        type="text"
+                        id="position"
+                        name="position"
+                        required
+                        value={jobFormData.position}
+                        onChange={handleJobFormChange}
+                        className="w-full px-4 py-3 bg-evonics-black-400/50 border border-evonics-gold-500/30 rounded-lg text-white placeholder-gray-400 focus:border-evonics-gold-500 focus:outline-none transition-colors"
+                        placeholder="Which position are you applying for?"
+                      />
+                    </div>
+                    
+                    <button type="submit" className="btn-premium w-full group">
+                      <Send className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" />
+                      Submit Application
+                    </button>
+                  </motion.form>
+                ) : null}
+              </AnimatePresence>
+            </div>
+
+            {/* Experience Demo Section */}
             <div className="bg-gradient-to-br from-evonics-gold-500/20 to-evonics-gold-600/10 border border-evonics-gold-500/30 rounded-3xl p-8 lg:p-10 text-center">
               <Calendar className="w-16 h-16 text-evonics-gold-400 mx-auto mb-6" />
               <h3 className="text-2xl font-bold text-white mb-4">Experience HAMARA Live</h3>
@@ -190,6 +437,7 @@ const ContactSection = () => {
               </a>
             </div>
 
+            {/* Contact Information */}
             <div className="bg-gradient-to-br from-evonics-black-400/50 to-evonics-black-500/30 backdrop-blur-sm border border-evonics-gold-500/30 rounded-3xl p-8 lg:p-10">
               <h3 className="text-xl font-bold text-white mb-6">Contact Information</h3>
               <div className="space-y-4">
@@ -227,6 +475,7 @@ const ContactSection = () => {
               </div>
             </div>
 
+            {/* Quick Actions */}
             <div className="bg-gradient-to-br from-evonics-black-400/50 to-evonics-black-500/30 backdrop-blur-sm border border-evonics-gold-500/30 rounded-3xl p-8 lg:p-10">
               <h3 className="text-xl font-bold text-white mb-6">Quick Actions</h3>
               <div className="space-y-3">

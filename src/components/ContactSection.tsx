@@ -65,7 +65,7 @@ const ContactSection = () => {
   const handleJobSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await fetch('https://script.google.com/macros/s/AKfycbxqBPnzSlan4mxRVg9_J6Ohx9vdLWBRCS4PgxPHpl9jqkWKKRZr7q-8jpKtawFvXz29cQ/exec', {
+      await fetch('https://script.google.com/macros/s/AKfycbz_SSn77TWR0f-vwbx8FFZ1EeeCAdvO3Aem_DKwNwXggCH8LKk1oadS5fRbTv0I8dtzww/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
